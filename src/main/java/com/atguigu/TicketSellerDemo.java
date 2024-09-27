@@ -20,9 +20,9 @@ class TicketsSold // Object = Attribute(Filed) + method
 
             //in there we can also use the time space for 10 or longer seconds to check the seller No.? is really working or not
 
-            /*try{
+            try{
                 TimeUnit.MILLISECONDS.sleep(10);
-            } catch (InterruptedException e) {e.printStackTrace();}*/
+            } catch (InterruptedException e) {e.printStackTrace();}
         }
     }
 }
