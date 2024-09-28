@@ -6,7 +6,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
     class Ticket{
         private int number = 50;
-
         Lock lock = new ReentrantLock(true);
         public void sale()
         {
@@ -15,10 +14,11 @@ import java.util.concurrent.locks.ReentrantLock;
             {
                 if(number >0 )
                 {
-                    System.out.println( Thread.currentThread().getName() + "\t"+"sold No." + (number--) + "\tstill remaining: " + number );
+                    System.out.println( Thread.currentThread().getName() + "\t" + "sold No." + (number--) + "\tstill remaining: " + number );
                     //try { TimeUnit.MILLISECONDS.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
                 }
             }finally {
+
                 lock.unlock();
             }
         }
@@ -26,7 +26,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 
 public class JUCVersion {
+
     public static void main(String[] args) {
+
         Ticket ticket = new Ticket();
 
         new Thread ( () -> { for ( int i = 0; i < 50; i++ ) { ticket.sale(); } }, "Seller No.1" ).start();
@@ -34,3 +36,4 @@ public class JUCVersion {
         new Thread ( () -> { for ( int i = 0; i < 50; i++ ) { ticket.sale(); } }, "Seller No.3" ).start();
     }
 }
+
