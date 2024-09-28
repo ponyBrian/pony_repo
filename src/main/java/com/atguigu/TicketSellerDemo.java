@@ -10,8 +10,7 @@ class TicketsSold // Object = Attribute(Filed) + method
 {
     private int Ticketnumber = 50; //number of Tickets ; this is the field (Attribute)
 
-
-    // operation of sale tickets ; this is the method ,the 'synchronized' as a locker to make sure there will be no error on tickets
+    // operation of sale tickets ; this is the method ,the 'synchronized//同步代码块//lock.lock' as a locker to make sure there will be no error on tickets
     public synchronized void sale()
     {
         if(Ticketnumber > 0)
@@ -20,17 +19,14 @@ class TicketsSold // Object = Attribute(Filed) + method
 
             //in there we can also use the time space for 10 or longer seconds to check the seller No.? is really working or not
 
-            try{
+            /*try{
                 TimeUnit.MILLISECONDS.sleep(10);
-            } catch (InterruptedException e) {e.printStackTrace();}
+            } catch (InterruptedException e) {e.printStackTrace();}*/
         }
     }
 }
-
 public class TicketSellerDemo {
-
     public static void main(String[] args) {
-
         //three seller, therefore three threads
         /*Thread thread1 = new Thread();
         Thread thread2 = new Thread();
@@ -40,33 +36,30 @@ public class TicketSellerDemo {
 
         TicketsSold ticketsSold = new TicketsSold();
 
-
         //Anonymous inner classes interface can be new!    new 'Runnable' interface for the Anonymous inner class
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //make sure the number of tickets will not be over than max number of 50
-                for (int i = 0; i < 50; i++) {
-                    ticketsSold.sale();
 
-                }
+        new Thread(() -> {
+            // make sure the number of tickets will not be over than max number of 50
+            for (int i = 0; i < 50; i++) {
+                ticketsSold.sale();
             }
         }, "Seller No.1").start();
 
-//---------------------------------------------------
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //make sure the number of tickets will not be over than max number of 50
-                for (int i = 0; i < 50; i++) {
-                    ticketsSold.sale();
-
-                }
+        new Thread(() -> {
+            // make sure the number of tickets will not be over than max number of 50
+            for (int i = 0; i < 50; i++) {
+                ticketsSold.sale();
             }
         }, "Seller No.2").start();
 
-//----------------------------------------------------
-        new Thread(new Runnable() {
+        new Thread(() -> {
+            // make sure the number of tickets will not be over than max number of 50
+            for (int i = 0; i < 50; i++) {
+                ticketsSold.sale();
+            }
+        }, "Seller No.3").start();
+
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
                 //make sure the number of tickets will not be over than max number of 50
@@ -75,7 +68,20 @@ public class TicketSellerDemo {
 
                 }
             }
-        }, "Seller No.3").start();
+        }, "Seller No.1").start();*/
 
+//---------------------------------------------------
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //make sure the number of tickets will not be over than max number of 50
+                for (int i = 0; i < 50; i++) {
+                    ticketsSold.sale();
+
+                }
+            }
+        }, "Seller No.2").start();*/
+
+//----------------------------------------------------
     }
 }
