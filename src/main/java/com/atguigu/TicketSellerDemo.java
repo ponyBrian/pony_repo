@@ -38,12 +38,7 @@ public class TicketSellerDemo {
 
         //Anonymous inner classes interface can be new!    new 'Runnable' interface for the Anonymous inner class
 
-        new Thread(() -> {
-            // make sure the number of tickets will not be over than max number of 50
-            for (int i = 0; i < 50; i++) {
-                ticketsSold.sale();
-            }
-        }, "Seller No.1").start();
+        new Thread ( () -> { for ( int i = 0; i < 50; i++ ) { ticketsSold.sale(); } }, "Seller No.1" ).start();
 
         new Thread(() -> {
             // make sure the number of tickets will not be over than max number of 50
